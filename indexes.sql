@@ -1,0 +1,12 @@
+CREATE INDEX index_datas on reserva (data_entrada, data_saida);
+CREATE INDEX index_reserva on reserva (numero_quarto, id_hotel, data_entrada, data_saida);
+CREATE INDEX index_estado on hotel(estado);
+CREATE INDEX index_caracteristicas_quarto on quarto (categoria, capacidade);
+create index btpagamento on reserva(modo_pagamento);
+create index ano_entrada_ind on reserva using btree (ano_entrada) ;
+SELECT * FROM pg_extension WHERE extname = 'pg_trgm';
+CREATE EXTENSION pg_trgm;
+CREATE INDEX gnome_hospede_ind ON hospede USING gin (nome gin_trgm_ops);
+CREATE INDEX ind_mes_saida ON reserva(mes_saida);
+CREATE INDEX ind_ano_saida ON reserva(ano_saida);
+CREATE INDEX ind_saida ON reserva(mes_saida, ano_saida);
